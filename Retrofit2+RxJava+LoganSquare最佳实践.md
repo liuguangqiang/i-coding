@@ -192,4 +192,4 @@ Retrofit retrofit = new Retrofit.Builder()
 源码当然要献上的，之前的一个开源的APP叫[IDaily](https://github.com/liuguangqiang/Idaily)，其中的HTTP请求就是采用的Retrofit2+RxJava+LoganSquare，敢兴趣的朋友，可以看一下。
 
 ##That's all!
-到此就结束了, 初次类似的文章，如有错误，望见谅！谢谢！
+到此就结束了, 初次写类似的文章，如有错误，望见谅！谢谢！
