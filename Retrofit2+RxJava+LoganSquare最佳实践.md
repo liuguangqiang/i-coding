@@ -6,7 +6,7 @@ Retrofit是Square的一个非常知名的开源的网络请求库，并且是由
 现在Retrofit已经出到2.0.2版本了，与前的1.9版本相差很大，并且官方强烈推荐2.0版本，所以在此就只聊2.0以后的版本。
 
 ##马上开撸！
-肯定要先build.gradle中添加retrofit的依赖。
+首先肯定要在build.gradle中添加retrofit的依赖。
 
 ```
 compile 'com.squareup.retrofit2:retrofit:2.0.2'
@@ -39,24 +39,22 @@ Call<Daily> daily = service.getLatest();
 
 RxJava到底是什么？
 
-```
-a library for composing asynchronous and event-based programs using observable sequences for the Java VM。
-一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库
-```
+Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM.
+
 
 如果不熟悉RxJava的朋友，可以看看这篇文章，[给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083#toc_1)
 
 Retrofit2.0依然是支持RxJava的，但和以前的集成在一起不同，现在是完全独立的，需要自己添加CallAdapter。这样的好处是更灵活，更解耦。
 
 ```
-	/**
-     * Add a call adapter factory for supporting service method return types other than {@link
-     * Call}.
-     */
-    public Builder addCallAdapterFactory(CallAdapter.Factory factory) {
+/**
+ * Add a call adapter factory for supporting service method return types other than {@link
+ * Call}.
+ */
+public Builder addCallAdapterFactory(CallAdapter.Factory factory) {
       adapterFactories.add(checkNotNull(factory, "factory == null"));
-      return this;
-    }
+    return this;
+}
 
 ```
 
@@ -78,34 +76,35 @@ Retrofit retrofit = new Retrofit.Builder()
 **首先修改我们的API接口。**
 
 ```
-	public interface ZhihuService {
+public interface ZhihuService {
 	
-	    @GET("news/latest")
-	    Observable<Daily> getLatest();
+	 @GET("news/latest")
+	 Observable<Daily> getLatest();
 	     
-	}
+}
 ```
 
 **RxJava的使用在这里！！**
 
 ```	
-		ZhihuService service = retrofit.create(ZhihuService.class);
-	    Observable<Daily> observable = service.getLatest();
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Daily>() {
-                    @Override
-                    public void onCompleted() {
-                    }
+    ZhihuService service = retrofit.create(ZhihuService.class);
+    Observable<Daily> observable = service.getLatest();
+    observable.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Daily>() {
+        @Override
+        public void onCompleted() {
+        }
 
-                    @Override
-                    public void onError(Throwable e) {
-                    }
+        @Override
+        public void onError(Throwable e) {
+        }
 
-                    @Override
-                    public void onNext(Daily daily) {
-                    }
-                });
+        @Override
+        public void onNext(Daily daily) {
+        }
+    });
+
 ```
 
 ##Retrofit Converter的使用
@@ -122,11 +121,11 @@ Converter和CallAdapter一样，也从Retrofit中分离出来，需要自己添�
 但是发现没有LoganSqaure，那只有自己撸了，还好在github上已经有写好的，是时候发挥我们的拿来主义的精神了，不然怎么说我们都是github的搬运工呢。
 
 ```
-	complie 'com.github.aurae.retrofit2:converter-logansquare:1.4.0'
+complie 'com.github.aurae.retrofit2:converter-logansquare:1.4.0'
 ```
 
 ```
- Retrofit retrofit = new Retrofit.Builder()
+Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HOST_NAME)
                 .addConverterFactory(LoganSquareConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -158,7 +157,7 @@ dependencies {
 }
 ```
 
-##Log
+##打印Log
 很多时候，我们希望打印Http请求的Log，这样方便调试。在老版本的Retrofit中，有个方法
 
 ```
@@ -181,9 +180,11 @@ HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 ```
 
 ```
-  Retrofit retrofit = new Retrofit.Builder()
+Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HOST_NAME)
                 .client(okHttpClient)
+                .addConverterFactory(LoganSquareConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 ```
 
