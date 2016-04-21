@@ -1,8 +1,9 @@
 Retrofit2+RxJava+LoganSquare最佳实践
 ====================================
 ##基本介绍
-Retrofit是Square的一个非常知名的开源库，并且是Android大神JakeWharton亲自操刀的网络请求库。
-现在Retrofit已经出到2.0.2版本了，与2.0以前的版本相差颇大，并且官方强烈推荐2.0版本，所以在此就只聊2.0以后的版本。
+Retrofit是Square的一个非常知名的开源的网络请求库，并且是由Android大神JakeWharton亲自操刀。
+
+现在Retrofit已经出到2.0.2版本了，与前的1.9版本相差很大，并且官方强烈推荐2.0版本，所以在此就只聊2.0以后的版本。
 
 ##马上开撸！
 肯定要先build.gradle中添加retrofit的依赖。
@@ -45,7 +46,7 @@ a library for composing asynchronous and event-based programs using observable s
 
 如果不熟悉RxJava的朋友，可以看看这篇文章，[给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083#toc_1)
 
-Retrofit2.0依然是支持RxJava的，但和以前的集成在一起不同，现在是分离的，需要自己设置call adapter factory。这样的好处是更解耦，而且如果可以自定义。
+Retrofit2.0依然是支持RxJava的，但和以前的集成在一起不同，现在是完全独立的，需要自己添加CallAdapter。这样的好处是更灵活，更解耦。
 
 ```
 	/**
@@ -59,8 +60,7 @@ Retrofit2.0依然是支持RxJava的，但和以前的集成在一起不同，现
 
 ```
 
-##添加RxJavaCallAdapterFactory
-
+##添加RxJavaCallAdapter
 
 ```
 compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
@@ -108,8 +108,9 @@ Retrofit retrofit = new Retrofit.Builder()
                 });
 ```
 
-##Retrofit Converter
+##Retrofit Converter的使用
 Converter和CallAdapter一样，也从Retrofit中分离出来，需要自己添加。官方提供了很多convertes.
+
 * gson
 * jackson
 * moshi
@@ -132,8 +133,10 @@ Converter和CallAdapter一样，也从Retrofit中分离出来，需要自己添�
                 .build();
 ```
 
-##为什么使用LoganSquare呢？
-下图是几个开源库的性能对比。
+##为什么使用LoganSquare来解析JSON？
+
+天下武功唯快不破！因为LoganSquare快啊！
+
 ![Alt text](arts/1461222338634.png)
  Note: Our "400% or more" performance improvement metric was determined using ART. While LoganSquare still comes out on top with Dalvik, it seems as though the comparison is much closer. The benchmarks shown are actual screenshots taken from a 2nd gen Moto X.	
 
@@ -184,3 +187,8 @@ HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
                 .build();
 ```
 
+##看了这么多，源码呢？
+源码当然要献上的，之前的一个开源的APP叫[IDaily](https://github.com/liuguangqiang/Idaily)，其中的HTTP请求就是采用的Retrofit2+RxJava+LoganSquare，敢兴趣的朋友，可以看一下。
+
+##That's all!
+到此就结束了, 初次类似的文章，如有错误，望见谅！谢谢！
