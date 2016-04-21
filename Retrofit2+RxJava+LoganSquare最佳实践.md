@@ -134,7 +134,7 @@ Converter和CallAdapter一样，也从Retrofit中分离出来，需要自己添�
 
 ##为什么使用LoganSquare呢？
 下图是几个开源库的性能对比。
-![Alt text](./1461222338634.png)
+![Alt text](arts/1461222338634.png)
  Note: Our "400% or more" performance improvement metric was determined using ART. While LoganSquare still comes out on top with Dalvik, it seems as though the comparison is much closer. The benchmarks shown are actual screenshots taken from a 2nd gen Moto X.	
 
 ####添加LoganSquare
