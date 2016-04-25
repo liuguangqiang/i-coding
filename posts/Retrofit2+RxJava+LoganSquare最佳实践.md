@@ -136,7 +136,7 @@ Retrofit retrofit = new Retrofit.Builder()
 
 天下武功唯快不破！因为LoganSquare快啊！
 
-![Alt text](arts/1461222338634.png)
+![Alt text](../arts/1461222338634.png)
  Note: Our "400% or more" performance improvement metric was determined using ART. While LoganSquare still comes out on top with Dalvik, it seems as though the comparison is much closer. The benchmarks shown are actual screenshots taken from a 2nd gen Moto X.	
 
 ####添加LoganSquare
