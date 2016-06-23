@@ -7,6 +7,7 @@ Name | Repository
 --- | --- 
 [Retrofit2+RxJava+LoganSquare最佳实践](https://github.com/liuguangqiang/AndroidMan/blob/master/posts/Retrofit2%2BRxJava%2BLoganSquare%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.md) | Eric
 
+
 ## 微信公众号
 ![Alt text](arts/wechat.jpg)
 
