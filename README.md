@@ -1,6 +1,6 @@
-AndroidMan
+I-Coding
 ====================================
-分享Android的开发经验，技术干货和开源项目。一起学习！一起进步！
+分享和收藏Android的开发经验，技术干货和开源项目。
 
 ## Content
 Name | From
