@@ -1,3 +1,6 @@
+以Android项目为例了解Travis CI的使用
+============================================
+
 ##什么是Travis CI？
 Travis CI是目前最流行的持续集成构建工具，简洁清新独树一帜，目前github上的很多开源项目都在使用Travis CI作为持续集成构建环境。
 
@@ -9,6 +12,7 @@ Travis CI是目前最流行的持续集成构建工具，简洁清新独树一�
 如果你已经有了github账号的话，就非常简单了，当然这里我假设你已经有github账号。
 
 打开Travis CI的网站，一个大大的按钮如图所示，Sign in with Github!
+
 [<img src="resources/780B179AE4ABB48EF773C897AB0B376D.png" width="40%">](https://travis-ci.org/)
 
 登录成功，完成同步后，选择一个需要做持续集成的项目
